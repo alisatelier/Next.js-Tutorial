@@ -1,4 +1,5 @@
 import postgres from 'postgres';
+import { formatCurrency } from './utils';
 import {
   CustomerField,
   CustomersTableType,
@@ -7,20 +8,16 @@ import {
   LatestInvoiceRaw,
   Revenue,
 } from './definitions';
-import { formatCurrency } from './utils';
 
-
-const url =
+const conn =
   process.env.POSTGRES_URL ||
   process.env.DATABASE_URL;
 
-if (!url) {
-  throw new Error('Missing POSTGRES_URL/DATABASE_URL');
+if (!conn) {
+  throw new Error('Missing POSTGRES_URL or DATABASE_URL');
 }
 
-export const sql = postgres(url, { ssl: 'require' });
-
-//const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+const sql = postgres(conn, { ssl: 'require' }); 
 
 export async function fetchRevenue() {
   try {

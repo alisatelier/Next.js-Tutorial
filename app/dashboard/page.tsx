@@ -1,13 +1,16 @@
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs'; // ensure Node runtime for the postgres driver
+
 import { Card } from '@/app/ui/dashboard/cards';
 import RevenueChart from '@/app/ui/dashboard/revenue-chart';
 import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
 import { lusitana } from '@/app/ui/fonts';
-import { fetchRevenue,  fetchCardData, fetchLatestInvoices } from '@/app/lib/data';
- 
+import { fetchRevenue, fetchCardData, fetchLatestInvoices } from '@/app/lib/data';
+
 export default async function Page() {
   const revenue = await fetchRevenue();
   const latestInvoices = await fetchLatestInvoices();
-    const {
+  const {
     numberOfInvoices,
     numberOfCustomers,
     totalPaidInvoices,
