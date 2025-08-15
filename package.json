@@ -38,6 +38,9 @@
       "sharp"
     ]
   },
+    "prisma": {
+    "seed": "node --import tsx prisma/seed.ts"
+  },
   "engines": {
     "node": ">=18.0.0"
   }
